@@ -1,0 +1,54 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>IT 411 - Jennifer Kania - Assignment 5 - Sliding An Image</title>
+  <link href="stylesheets/IT411b.css" rel="stylesheet">
+    <style>
+    .image {
+		display: block;
+		position: relative;
+		left:5px;
+	}
+    </style>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+   $(document).ready(function() {
+			$(".image").click(function() {
+                //if my left setting is 5px I'm all the way to the left so go 300px right
+				if ($(this).css('left') =='5px') {		
+                    $(this).stop().animate({"left": "300px"},3000);
+                      $(this).addClass('movingright');
+                }
+                    //If I'm set to moving right but I'm clicked I should head back to left and remove
+                    //the indicator that I was moving right
+                    else { 
+                        if ($(this).hasClass('movingright')) {
+                          $(this).stop().animate({"left": "5px"},3000);
+                            $(this).removeClass('movingright');
+                        } else {
+                        //I hit this if I'm not at 5px left and I'm not moving right
+                        //so at this point I want to head right to 300px and indicte I'm moving right
+                        $(this).stop().animate({"left": "300px"},3000);
+                          $(this).addClass('movingright');
+				        }
+                }
+            });		
+		});	
+  </script>
+</head>
+
+<body>
+  <h1>IT 411 - Jennifer Kania - A5 - Sliding An Image</h1>
+  <h2>Displaying a gallery of images - click an image to make it slide</h2>
+  <hr />
+  <div id="content">
+  </div>
+  <div id="gallery">
+    <h3>Gallery of images</h3>
+    <img class="image" src="images/gnu.jpg" height="200px" width="250px">
+    <img class="image" src="images/tiger.jpg" height="200px" width="250px">
+    <img class="image" src="images/black_rhino.jpg" height="200px" width="250px">
+    <img class="image" src="images/cape_buffalo.jpg" height="200px" width="250px">
+  </div>
+</body>
+</html>
